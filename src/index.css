@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@theme {
+  --color-dark-primary: #1b1c1d;
+  --color-dark-secondary: #282a2c;
+  --color-accent: #606060;
+  --color-light-primary: #fff;
+  --color-light-secondary: #f0f4f9;
+  --color-light-accent: #e7ecef;
+}
+.dark {
+  color: white;
+}
+body {
+  font-family: "Outfit", sans-serif;
+}
