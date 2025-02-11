@@ -1,4 +1,5 @@
 import promptData from "./promptData";
+import AutoPrompt from "./AutoPrompt";
 const StartedScreen = () => {
   return (
     <section className="flex flex-col gap-10">
@@ -13,7 +14,7 @@ const StartedScreen = () => {
       <section className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 w-full">
         {promptData.map((itemData, index) => {
           return (
-            <PromptBox
+            <AutoPrompt
               prompt={itemData.prompt}
               icon={itemData.icon}
               key={index}
@@ -24,12 +25,5 @@ const StartedScreen = () => {
     </section>
   );
 };
-const PromptBox = ({ prompt, icon }) => {
-  return (
-    <div className="p-6 flex flex-col gap-3 items-start cursor-pointer bg-light-secondary dark:bg-dark-secondary rounded-2xl hover:bg-light-accent dark:hover:bg-accent transition-all duration-300">
-      <div className="bg-white p-2 rounded-full dark:text-accent">{icon}</div>
-      <p>{prompt}</p>
-    </div>
-  );
-};
+
 export default StartedScreen;

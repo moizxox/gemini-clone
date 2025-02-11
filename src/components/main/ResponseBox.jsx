@@ -11,14 +11,14 @@ const ResponseBox = () => {
         <img src={UserIcon} alt="User" className="w-[36px] rounded-full" />
         <h4>{recentInput}</h4>
       </div>
-      <div className="flex items-center gap-5 bg-light-secondary dark:bg-dark-secondary p-3 rounded-[16px]">
+      <div className="flex items-start gap-5 bg-light-secondary dark:bg-dark-secondary p-3 rounded-[16px]">
         <img
           src={AiIcon}
           alt="User"
           className="w-[36px] p-1 bg-white rounded-full"
         />
         {loading ? (
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center self-center">
             <div className="flex flex-row gap-2">
               <div className="w-2 h-2 rounded-full bg-dark-primary dark:bg-light-primary animate-bounce"></div>
               <div className="w-2 h-2 rounded-full bg-dark-primary dark:bg-light-primary animate-bounce [animation-delay:-.3s]"></div>
@@ -26,7 +26,7 @@ const ResponseBox = () => {
             </div>
           </div>
         ) : (
-          <p>{response}</p>
+          <p className="text-lg font-light">{response}</p>
         )}
       </div>
     </section>

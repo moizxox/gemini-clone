@@ -4,23 +4,37 @@ import makeRequest from "../config/gemini";
 export const Context = createContext();
 
 const ContextProvider = (props) => {
-  // const [input, setInput] = useState("");
   const [recentInput, setRecentInput] = useState("");
   const [history, setHistory] = useState([]);
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [resultScreen, setResultScreen] = useState(false);
+  const [addInRecent, setAddInRecent] = useState(true);
 
   const sendRequest = async (prompt) => {
     setResultScreen(true);
     setLoading(true);
-    console.log("first");
     const aiResponse = await makeRequest(prompt);
     setResponse(aiResponse);
     setLoading(false);
-    console.log("second");
     console.log(aiResponse);
   };
+
+  const makeNewChat = () => {
+    setAddInRecent(true);
+    setRecentInput("");
+    setResponse("");
+    setResultScreen(false);
+  };
+
+  useEffect(() => {
+    if (recentInput && response && addInRecent) {
+      setHistory((prevHistory) => [
+        ...prevHistory,
+        { title: recentInput, data: response },
+      ]);
+    }
+  }, [response]);
 
   const contextValue = {
     recentInput,
@@ -31,7 +45,10 @@ const ContextProvider = (props) => {
     setResponse,
     loading,
     resultScreen,
+    setResultScreen,
     sendRequest,
+    makeNewChat,
+    setAddInRecent,
   };
   return (
     <Context.Provider value={contextValue}>{props.children}</Context.Provider>

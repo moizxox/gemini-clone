@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import RecentBox from "./RecentBox";
 import { IoMdSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
+import { Context } from "../../context/Context";
 
 const Sidebar = () => {
+  const { makeNewChat } = useContext(Context);
   const [extended, setExtended] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isSmallerDisplay, setIsSmallerDisplay] = useState(false);
@@ -19,8 +21,13 @@ const Sidebar = () => {
     }
   };
 
-  window.addEventListener("resize", checkScreenSize);
+  useEffect(() => {
+    checkScreenSize(); // Initial check
+    window.addEventListener("resize", checkScreenSize);
 
+    // Clean up the event listener on component unmount to prevent memory leaks
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
     document.documentElement.classList.toggle("dark");
@@ -52,6 +59,7 @@ const Sidebar = () => {
             ? "opacity-100 scale-100"
             : "opacity-0 scale-90 pointer-events-none"
         }`}
+        onClick={makeNewChat}
       >
         <FaPlus size={20} />
         <span>New Chat</span>

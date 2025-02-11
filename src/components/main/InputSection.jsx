@@ -3,10 +3,11 @@ import { IoMdSend } from "react-icons/io";
 import { Context } from "../../context/Context";
 
 const InputSection = () => {
-  const { setRecentInput, sendRequest } = useContext(Context);
+  const { setRecentInput, sendRequest, setAddInRecent } = useContext(Context);
   const [input, setInput] = useState("");
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    setAddInRecent(true);
     setRecentInput(input);
     sendRequest(input);
     setInput("");
