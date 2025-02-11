@@ -10,7 +10,33 @@
 }
 .dark {
   color: white;
+  & {
+    .custom-scroll::-webkit-scrollbar {
+      width: 4px;
+      height: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: var(--color-accent);
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #fff;
+    }
+  }
 }
 body {
   font-family: "Outfit", sans-serif;
+}
+/* Custom Scrollbar */
+.custom-scroll::-webkit-scrollbar {
+  width: 4px;
+  height: 8px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+  background: var(--color-light-accent);
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #d0d0d0;
 }

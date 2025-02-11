@@ -7,7 +7,7 @@ import { FaMoon } from "react-icons/fa";
 
 const Sidebar = () => {
   const [extended, setExtended] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   const [isSmallerDisplay, setIsSmallerDisplay] = useState(false);
   const checkScreenSize = () => {
     if (window.innerWidth < 768) {
